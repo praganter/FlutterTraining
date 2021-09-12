@@ -1,0 +1,25 @@
+import 'dart:convert';
+
+List<CurrencyModal> currencyModalFromJson(String str) => List<CurrencyModal>.from(json.decode(str).map((x) => CurrencyModal.fromJson(x)));
+
+String currencyModalToJson(List<CurrencyModal> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class CurrencyModal {
+    CurrencyModal({
+        required this.timestamp,
+        required this.marketCap,
+    });
+
+    late DateTime timestamp;
+    late String marketCap;
+
+    factory CurrencyModal.fromJson(Map<String, dynamic> json) => CurrencyModal(
+        timestamp: DateTime.parse(json["timestamp"]),
+        marketCap: json["market_cap"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "timestamp": timestamp.toIso8601String(),
+        "market_cap": marketCap,
+    };
+}
