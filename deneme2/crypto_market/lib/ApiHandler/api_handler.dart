@@ -17,8 +17,7 @@ class ApiHandler {
       var json = response.body;
       return currencyModalFromJson(json);
     } else {
-      print("Ağam data yok");
+      throw Exception();
     }
-    return body.map((item) => CurrencyModal.fromJson(item)).toList();
   }
 }
