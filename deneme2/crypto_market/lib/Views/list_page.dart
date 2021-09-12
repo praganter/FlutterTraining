@@ -78,16 +78,20 @@ class CustomLine extends StatelessWidget {
                   list[index].logoUrl.endsWith("svg")
                       ? CircleAvatar(
                           radius: 30,
-                          child: SvgPicture.network(
-                            list[index].logoUrl,
-                            fit: BoxFit.fill,
+                          child: ClipOval(
+                            child: SvgPicture.network(
+                              list[index].logoUrl,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         )
                       : CircleAvatar(
                           radius: 30,
-                          child: Image.network(
-                            list[index].logoUrl,
-                            fit: BoxFit.fill,
+                          child: ClipOval(
+                            child: Image.network(
+                              list[index].logoUrl,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                 ],
@@ -113,7 +117,7 @@ class CustomLine extends StatelessWidget {
             Expanded(
               flex: 4,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(list[index].price),
                   Text("\$${list[index].marketCap}"),
@@ -124,12 +128,12 @@ class CustomLine extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     list[index].the1D.priceChangePct.contains("-")
-                        ? "\u{1F815} ${list[index].the1D.priceChangePct}"
-                        : "\u{1F817} ${list[index].the1D.priceChangePct}",
+                        ? "${list[index].the1D.priceChangePct} ↓"
+                        : "${list[index].the1D.priceChangePct} ↑",
                     style: TextStyle(
                       color: list[index].the1D.priceChangePct.contains("-")
                           ? Colors.red
