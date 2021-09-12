@@ -51,10 +51,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Tooltip(message: "TR <-> EN", child: Icon(Icons.language)),
-            ),
           ],
         ),
       ),

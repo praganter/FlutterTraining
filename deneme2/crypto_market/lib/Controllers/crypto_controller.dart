@@ -13,7 +13,6 @@ class CryptoController extends GetxController {
 
   @override
   void onInit() {
-    //print("Crypto controller kuruldu iyisin");
     getcurrency();
     super.onInit();
   }
@@ -21,8 +20,6 @@ class CryptoController extends GetxController {
   Future<void> getcurrency() async {
     try {
       var data = await ApiHandler().getCurrencies();
-      //print(data);
-      //print("sanırım data geldi");
       currencyList.assignAll(data);
       // currencyList = priceFormatter(marketCapFormatter(
       //     percentageFormatter(volumeFormatter(currencyList))));
@@ -31,7 +28,6 @@ class CryptoController extends GetxController {
       currencyList = percentageFormatter(currencyList);
       currencyList = volumeFormatter(currencyList);
     } catch (e) {
-      print("Data mata yok aq");
       print(e.toString());
     }
   }

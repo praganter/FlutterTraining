@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final currencyModal = currencyModalFromJson(jsonString);
-
 import 'dart:convert';
 
 List<CurrencyModal> currencyModalFromJson(String str) =>
