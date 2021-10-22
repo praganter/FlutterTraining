@@ -156,6 +156,9 @@ class HomePage extends StatelessWidget {
       highlightColor: Colors.transparent,
       child: Image.asset(
         assetName,
+        fit: BoxFit.fill,
+        gaplessPlayback: true,
+        isAntiAlias: true,
         filterQuality: FilterQuality.low,
         color: isDark ? Colors.white : Colors.black,
       ),
