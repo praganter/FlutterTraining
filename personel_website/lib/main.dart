@@ -16,12 +16,14 @@ class Main extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
-      child: MaterialAppWithTheme(),
+      child: const MaterialAppWithTheme(),
     );
   }
 }
 
 class MaterialAppWithTheme extends StatelessWidget {
+  const MaterialAppWithTheme({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

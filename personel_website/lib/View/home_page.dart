@@ -1,11 +1,10 @@
+// ignore_for_file: avoid_web_libraries_in_flutter, must_be_immutable
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:personel_website/Providers/theme_provider.dart';
 import 'dart:js' as js;
-
-import 'package:personel_website/Utils/util.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   var link = [
@@ -15,6 +14,7 @@ class HomePage extends StatelessWidget {
     "https://twitter.com/praganter",
     "https://steamcommunity.com/id/praganter/",
     "www.google.com",
+    "",
   ];
   var assetName = [
     "linkedin.png",
@@ -23,7 +23,10 @@ class HomePage extends StatelessWidget {
     "twitter.png",
     "steam.png",
     "email.png",
+    "cv.png",
   ];
+
+  HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     bool isDark = Provider.of<ThemeProvider>(context, listen: false).isDark;
@@ -64,6 +67,8 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
         alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,7 +135,15 @@ class HomePage extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 2,
-                    child: Container(color: Colors.orange),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                        style: TextStyle(
+                            color: isDark ? Colors.white : Colors.black),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -138,8 +151,17 @@ class HomePage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Container(
-                  // color: Colors.yellow,
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "© 2021 Batuhan YETGİN - Made with Flutter",
+                    style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black,
+                        fontSize: 9),
                   ),
+                ),
+              ),
             ),
           ],
         ),
