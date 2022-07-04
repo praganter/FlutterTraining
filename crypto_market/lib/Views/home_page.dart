@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: Text("Workshop"),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
@@ -18,24 +18,8 @@ class HomePage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                if (Get.isDarkMode) {
-                  Get.changeThemeMode(ThemeMode.light);
-                } else {
-                  Get.changeThemeMode(ThemeMode.dark);
-                }
-              },
-              child: Icon(Icons.dark_mode),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Get.toNamed('/list');
-              },
-              child: Icon(Icons.arrow_forward),
-            ),
-            ElevatedButton(
-              onPressed: () {
                 Get.snackbar(
-                  "Dr.Flutter",
+                  "Batuhan YETGİN",
                   "Hello Xinerji",
                   icon: Icon(Icons.computer),
                   snackPosition: SnackPosition.TOP,
@@ -52,8 +36,20 @@ class HomePage extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
-              child: Tooltip(message: "TR <-> EN", child: Icon(Icons.language)),
+              onPressed: () {
+                Get.toNamed('/list');
+              },
+              child: Icon(Icons.arrow_forward),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (Get.isDarkMode) {
+                  Get.changeThemeMode(ThemeMode.light);
+                } else {
+                  Get.changeThemeMode(ThemeMode.dark);
+                }
+              },
+              child: Icon(Icons.dark_mode),
             ),
           ],
         ),

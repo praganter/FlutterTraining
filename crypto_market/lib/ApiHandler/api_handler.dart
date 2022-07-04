@@ -11,14 +11,10 @@ class ApiHandler {
     final _url = _apiBaseUrl + _apiKey + apiTag;
     print(_url);
     var response = await http.get(Uri.parse(_url));
-    //print(response.body);
     if (response.statusCode == 200) {
-      //print("Apihandler data dönüyor");
       var json = response.body;
       return currencyModalFromJson(json);
-    } else {
-      print("Ağam data yok");
-    }
+    } else {}
     return body.map((item) => CurrencyModal.fromJson(item)).toList();
   }
 }

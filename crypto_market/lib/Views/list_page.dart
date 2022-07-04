@@ -12,11 +12,6 @@ class ListPage extends StatelessWidget {
     final CryptoController controller = Get.find();
     print(controller.currencyList);
     return Scaffold(
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   centerTitle: true,
-      //   title: Text("Listing Page"),
-      // ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,8 +26,7 @@ class ListPage extends StatelessWidget {
                       itemCount: controller.currencyList.length,
                       itemBuilder: (_, index) => Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
-                        child: CustomLine(
-                            index: index, list: controller.currencyList),
+                        child: CustomLine(index: index, list: controller.currencyList),
                       ),
                     ),
                   ),
@@ -43,7 +37,9 @@ class ListPage extends StatelessWidget {
               onPressed: () {
                 Get.offAllNamed('/');
               },
-              child: Icon(Icons.keyboard_return),
+              child: Icon(
+                Icons.keyboard_return,
+              ),
             ),
           ],
         ),
@@ -123,16 +119,21 @@ class CustomLine extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    list[index].the1D.priceChangePct.contains("-")
-                        ? "\u{1F815} ${list[index].the1D.priceChangePct}"
-                        : "\u{1F817} ${list[index].the1D.priceChangePct}",
-                    style: TextStyle(
-                      color: list[index].the1D.priceChangePct.contains("-")
-                          ? Colors.red
-                          : Colors.green,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        list[index].the1D.priceChangePct.contains("-") ? Icons.arrow_downward : Icons.arrow_upward,
+                        color: list[index].the1D.priceChangePct.contains("-") ? Colors.red : Colors.green,
+                      ),
+                      Text(
+                        list[index].the1D.priceChangePct.contains("-") ? "${list[index].the1D.priceChangePct}" : "${list[index].the1D.priceChangePct}",
+                        style: TextStyle(
+                          color: list[index].the1D.priceChangePct.contains("-") ? Colors.red : Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                   Text("\$${list[index].the1D.volume}"),
                 ],

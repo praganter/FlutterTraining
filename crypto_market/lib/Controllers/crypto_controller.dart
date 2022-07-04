@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class CryptoController extends GetxController {
-  List<CurrencyModal> currencyList =
-      List<CurrencyModal>.empty(growable: true).obs;
+  List<CurrencyModal> currencyList = List<CurrencyModal>.empty(growable: true).obs;
 
   final RxBool oneDay = false.obs;
   final RxBool sevenDay = false.obs;
@@ -13,7 +12,6 @@ class CryptoController extends GetxController {
 
   @override
   void onInit() {
-    //print("Crypto controller kuruldu iyisin");
     getcurrency();
     super.onInit();
   }
@@ -21,17 +19,12 @@ class CryptoController extends GetxController {
   Future<void> getcurrency() async {
     try {
       var data = await ApiHandler().getCurrencies();
-      //print(data);
-      //print("sanırım data geldi");
       currencyList.assignAll(data);
-      // currencyList = priceFormatter(marketCapFormatter(
-      //     percentageFormatter(volumeFormatter(currencyList))));
       currencyList = marketCapFormatter(currencyList);
       currencyList = priceFormatter(currencyList);
       currencyList = percentageFormatter(currencyList);
       currencyList = volumeFormatter(currencyList);
     } catch (e) {
-      print("Data mata yok aq");
       print(e.toString());
     }
   }
@@ -40,8 +33,7 @@ class CryptoController extends GetxController {
   List<CurrencyModal> priceFormatter(List<CurrencyModal> rawList) {
     List<CurrencyModal> expectedList = rawList;
     for (var i = 0; i < expectedList.length; i++) {
-      var temp = NumberFormat.simpleCurrency(locale: 'chr', decimalDigits: 3)
-          .format(double.parse(expectedList[i].price));
+      var temp = NumberFormat.simpleCurrency(locale: 'chr', decimalDigits: 3).format(double.parse(expectedList[i].price));
       temp = temp.replaceAll(",", " ");
       expectedList[i].price = temp;
     }
@@ -77,11 +69,9 @@ class CryptoController extends GetxController {
     for (var i = 0; i < expectedList.length; i++) {
       var temp = expectedList[i].the1D.volume;
       if (12 >= temp.length) {
-        expectedList[i].the1D.volume =
-            temp.substring(0, (temp.length - 9)) + "M vol";
+        expectedList[i].the1D.volume = temp.substring(0, (temp.length - 9)) + "M vol";
       } else {
-        expectedList[i].the1D.volume =
-            temp.substring(0, (temp.length - 12)) + "B vol";
+        expectedList[i].the1D.volume = temp.substring(0, (temp.length - 12)) + "B vol";
       }
     }
     return expectedList;
